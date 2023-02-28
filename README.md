@@ -29,4 +29,62 @@ id da turma(chave estrangeira);
 id do aluno(chave estrangeira);
 
 
-Script utilizado:
+Passo a passo do script utilizado( foi utilizado o MySQL Workbench 8.0:
+
+1º Passo - Criar o banco de dados e começar a utilizá-lo.
+
+create database Resilia;
+use resilia;
+
+2º Passo - Criar as tabelas.
+
+create table curso (
+	id int primary key not null auto_increment,
+  nome varchar(100)
+);
+
+create table aluno (
+	id int primary key not null auto_increment,
+	nome varchar(200)
+);
+
+create table turma (
+	id int primary key not null auto_increment,
+    numero int,
+    turno varchar(10)
+);
+
+create table historico (
+	id int primary key not null auto_increment
+);
+
+3º Passo - adicionar as chaves de dependencia externas.
+
+(chave da tabela aluno)
+alter table aluno
+ADD id_turma int;
+alter table aluno
+ADD FOREIGN KEY (id_turma) REFERENCES turma(id);
+    
+(chave da tabela turma)
+alter table turma
+ADD id_curso int;
+alter table turma
+ADD FOREIGN KEY (id_curso) REFERENCES curso(id);
+
+(chaves da tabela historico)    
+alter table historico
+ADD id_turma int;
+alter table historico
+ADD FOREIGN KEY (id_turma) REFERENCES turma(id);
+
+alter table historico
+ADD id_curso int;
+alter table historico
+ADD FOREIGN KEY (id_curso) REFERENCES curso(id);
+
+alter table historico
+ADD id_aluno int;
+alter table historico
+ADD FOREIGN KEY (id_aluno) REFERENCES aluno(id);
+
