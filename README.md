@@ -28,6 +28,9 @@ id do curso(chave estrangeira);
 id da turma(chave estrangeira);
 id do aluno(chave estrangeira);
 
+Imagem da modelagem utilizada como base:
+<img src="/fotoModelagem.jpg">
+
 
 Passo a passo do script utilizado( foi utilizado o MySQL Workbench 8.0:
 
